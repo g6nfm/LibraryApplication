@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibraryApplication</name>
+    </assembly>
+    <members>
+        <member name="M:LibraryApplication.Services.EmbeddedResourceHelper.GetEmbeddedResource(System.String)">
+            <summary>
+            Reads an embedded resource file as a string.
+            </summary>
+            <param name="resourceName">The fully qualified resource name.</param>
+            <returns>The content of the embedded resource as a string.</returns>
+        </member>
+    </members>
+</doc>

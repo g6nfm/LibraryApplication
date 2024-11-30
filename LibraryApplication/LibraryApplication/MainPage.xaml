@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LibraryApplication.MainPage"
+             BackgroundColor="#f0f0f0"
+             Title="MKJF Library">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label Text="Welcome to the MKJF Library Database!"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center" />
+            <Image Source="placeholder_logo.png"
+                   HeightRequest="120"
+                   WidthRequest="120"
+                   Margin="10" />
+        </VerticalStackLayout>
+
+        <!-- Main Menu Buttons -->
+        <VerticalStackLayout Grid.Row="1" Spacing="20" VerticalOptions="Start">
+            <Button Text="Search"
+                    BackgroundColor="#3498db"
+                    TextColor="White"
+                    CornerRadius="15"
+                    HeightRequest="50"
+                    FontSize="16"
+                    Pressed="OnButtonPressed"
+                    Released="OnButtonReleased"
+                    Clicked="OnSearchClicked" />
+
+            <Button Text="Favorites"
+                    BackgroundColor="#2ecc71"
+                    TextColor="White"
+                    CornerRadius="15"
+                    HeightRequest="50"
+                    FontSize="16"
+                    Pressed="OnButtonPressed"
+                    Released="OnButtonReleased"
+                    Clicked="OnFavoritesClicked" />
+
+            <Button Text="Checked Out Books"
+                    BackgroundColor="#e67e22"
+                    TextColor="White"
+                    CornerRadius="15"
+                    HeightRequest="50"
+                    FontSize="16"
+                    Pressed="OnButtonPressed"
+                    Released="OnButtonReleased"
+                    Clicked="OnCheckedOutBooksClicked" />
+        </VerticalStackLayout>
+
+        <!-- Footer -->
+        <VerticalStackLayout Grid.Row="2" HorizontalOptions="Center" VerticalOptions="End">
+            <Button Text="🛒 Cart"
+                    BackgroundColor="#9b59b6"
+                    TextColor="White"
+                    CornerRadius="15"
+                    HeightRequest="50"
+                    WidthRequest="150"
+                    Pressed="OnButtonPressed"
+                    Released="OnButtonReleased"
+                    Clicked="OnCartClicked" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
