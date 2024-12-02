@@ -25,9 +25,11 @@
             <!-- Results Count -->
             <Label x:Name="ResultsCountLabel" Text="Results: 0" FontAttributes="Bold" TextColor="DarkGray" />
 
-            <!-- Scrollable Content -->
-            <ScrollView>
-                <CollectionView x:Name="BooksCollectionView" SelectionMode="Single" SelectionChanged="OnBookSelected">
+            <!-- Scrollable Results -->
+            <ScrollView VerticalOptions="FillAndExpand">
+                <CollectionView x:Name="BooksCollectionView" SelectionMode="Single" SelectionChanged="OnBookSelected"
+                                HeightRequest="400">
+                    <!-- Adjust this height as necessary -->
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Padding="10">
@@ -50,10 +52,10 @@
                                 <Label Text="Location: " FontAttributes="Bold" />
                                 <Label Text="{Binding LocationDetails}" FontSize="14" TextColor="Gray" />
 
-                                <!-- Add to Cart Button -->
-                                <Button Text="Add to Cart" 
-                                        Clicked="OnAddToCartClicked" 
-                                        BackgroundColor="#2ecc71" 
+                                <!-- Loan Book Button -->
+                                <Button Text="Loan Book" 
+                                        Clicked="OnLoanBookClicked" 
+                                        BackgroundColor="#e74c3c" 
                                         TextColor="White" 
                                         CornerRadius="10" 
                                         Margin="0,10,0,0" 
@@ -64,7 +66,5 @@
                 </CollectionView>
             </ScrollView>
         </VerticalStackLayout>
-
-       
     </Grid>
 </ContentPage>

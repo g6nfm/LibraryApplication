@@ -30,16 +30,6 @@
                     Released="OnButtonReleased"
                     Clicked="OnSearchClicked" />
 
-            <Button Text="Favorites"
-                    BackgroundColor="#2ecc71"
-                    TextColor="White"
-                    CornerRadius="15"
-                    HeightRequest="50"
-                    FontSize="16"
-                    Pressed="OnButtonPressed"
-                    Released="OnButtonReleased"
-                    Clicked="OnFavoritesClicked" />
-
             <Button Text="Checked Out Books"
                     BackgroundColor="#e67e22"
                     TextColor="White"
@@ -61,7 +51,7 @@
                     WidthRequest="150"
                     Pressed="OnButtonPressed"
                     Released="OnButtonReleased"
-                    Clicked="OnCartClicked" />
+                     />
         </VerticalStackLayout>
     </Grid>
 </ContentPage>

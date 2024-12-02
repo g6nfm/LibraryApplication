@@ -12,22 +12,14 @@ public partial class MainPage : ContentPage
     // Navigation Event Handlers
     private async void OnCheckedOutBooksClicked(object sender, EventArgs e)
     {
-        //await Navigation.PushAsync(new CheckedOutBooksPage());
+        await Navigation.PushAsync(new CheckedOutBooksPage());
     }
 
-    private async void OnFavoritesClicked(object sender, EventArgs e)
-    {
-       // await Navigation.PushAsync(new FavoritesPage());
-    }
+
 
     private async void OnSearchClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new SearchPage());
-    }
-
-    private async void OnCartClicked(object sender, EventArgs e)
-    {
-       // await Navigation.PushAsync(new CartPage());
     }
 
     // Visual Feedback Event Handlers

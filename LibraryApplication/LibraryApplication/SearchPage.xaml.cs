@@ -37,6 +37,75 @@ public partial class SearchPage : ContentPage
         }
     }
 
+    private async void OnLoanBookClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        if (button?.CommandParameter is BookResult selectedBook)
+        {
+            try
+            {
+                string email = await DisplayPromptAsync("Loan Book", "Enter your email:");
+                if (string.IsNullOrEmpty(email))
+                {
+                    await DisplayAlert("Error", "Email is required to loan a book.", "OK");
+                    return;
+                }
+
+                var db = DatabaseHelper.GetConnection();
+
+                // Check for existing member
+                var existingMember = (await db.QueryAsync<Member>(
+                    "SELECT * FROM Members WHERE email = ?", email)).FirstOrDefault();
+
+                int memberId;
+
+                if (existingMember != null)
+                {
+                    memberId = existingMember.member_id;
+                }
+                else
+                {
+                    // Prompt user for required details
+                    string name = await DisplayPromptAsync("New Member", "Enter your full name:");
+                    string phone = await DisplayPromptAsync("New Member", "Enter your phone number (XXX-XXX-XXXX):");
+                    DateTime membershipDate = DateTime.Now;
+
+                    if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(phone))
+                    {
+                        await DisplayAlert("Error", "All fields are required to create a new member.", "OK");
+                        return;
+                    }
+
+                    // Insert new member
+                    await db.ExecuteAsync(
+                        "INSERT INTO Members (name, email, phone, membership_date) VALUES (?, ?, ?, ?)",
+                        name, email, phone, membershipDate.ToString("yyyy-MM-dd"));
+
+                    // Retrieve the newly created member_id
+                    memberId = await db.ExecuteScalarAsync<int>(
+                        "SELECT member_id FROM Members WHERE email = ?", email);
+                }
+
+                // Insert loan
+                DateTime loanDate = DateTime.Now;
+                DateTime dueDate = loanDate.AddDays(14); // Example 14-day loan period
+
+                await db.ExecuteAsync(
+                    "INSERT INTO Loans (book_id, member_id, loan_date, due_date, location_id) VALUES (?, ?, ?, ?, ?)",
+                    selectedBook.BookId, memberId, loanDate.ToString("yyyy-MM-dd"), dueDate.ToString("yyyy-MM-dd"), "LOC1");
+
+
+                await DisplayAlert("Success", $"{selectedBook.Title} has been loaned to {email}.", "OK");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loaning book: {ex.Message}");
+                await DisplayAlert("Error", "An error occurred while loaning the book.", "OK");
+            }
+        }
+    }
+
+
     private void OnBookSelected(object sender, SelectionChangedEventArgs e)
     {
         var selectedBook = e.CurrentSelection.FirstOrDefault() as BookResult;
@@ -140,6 +209,15 @@ public partial class SearchPage : ContentPage
         public string CategoryName { get; set; }
         public string DeweyDecimal { get; set; } = "N/A"; // Default value
         public string LocationDetails { get; set; } = "Location not available"; // Default value
+    }
+
+    public class Member
+    {
+        public int member_id { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+        public DateTime membership_date { get; set; }
     }
 
 }

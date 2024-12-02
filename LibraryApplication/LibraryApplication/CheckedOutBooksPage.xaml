@@ -1,0 +1,50 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LibraryApplication.CheckedOutBooksPage"
+             Title="Checked Out Books">
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <!-- Email Entry -->
+        <Label Text="Enter Your Email" FontAttributes="Bold" />
+        <Entry x:Name="EmailEntry" Placeholder="Enter your email..." Keyboard="Email" />
+
+        <!-- Submit Button -->
+        <Button Text="Submit" Clicked="OnSubmitClicked" BackgroundColor="#3498db" TextColor="White" CornerRadius="10" />
+
+        <!-- Checked Out Books -->
+        <CollectionView x:Name="CheckedOutBooksCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <!-- Book Title -->
+                        <Label Text="{Binding Title}" FontSize="18" FontAttributes="Bold" />
+
+                        <!-- Author -->
+                        <Label Text="Author: " FontAttributes="Bold" />
+                        <Label Text="{Binding AuthorName}" FontSize="14" TextColor="DarkGray" />
+
+                        <!-- Category -->
+                        <Label Text="Category: " FontAttributes="Bold" />
+                        <Label Text="{Binding CategoryName}" FontSize="14" TextColor="DarkGray" />
+
+                        <!-- Loan Date -->
+                        <Label Text="Loan Date: " FontAttributes="Bold" />
+                        <Label Text="{Binding LoanDate}" FontSize="14" TextColor="Gray" />
+
+                        <!-- Due Date -->
+                        <Label Text="Due Date: " FontAttributes="Bold" />
+                        <Label Text="{Binding DueDate}" FontSize="14" TextColor="Gray" />
+
+                        <!-- Return Book Button -->
+                        <Button Text="Return Book"
+                                Clicked="OnReturnBookClicked"
+                                BackgroundColor="#e74c3c"
+                                TextColor="White"
+                                CornerRadius="10"
+                                Margin="0,10,0,0"
+                                CommandParameter="{Binding}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
