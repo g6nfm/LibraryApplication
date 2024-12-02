@@ -27,6 +27,7 @@ namespace LibraryApplication.Services
                 // Initialize SQLite connection
                 db = new SQLiteAsyncConnection(dbPath);
                 Debug.WriteLine("SQLite connection established.");
+                await db.ExecuteAsync("PRAGMA foreign_keys = ON;");
 
                 // Execute the embedded SQL script
                 string createTablesScript = GetEmbeddedResource("LibraryApplication.Resources.Database.create_tables.sql");
@@ -109,6 +110,35 @@ namespace LibraryApplication.Services
         {
             try
             {
+                // Seed Members
+                var members = new (int, string, string, string, string)[]
+                {
+                    (1, "John Doe", "john.doe@example.com", "123-456-7890", "2021-01-01"),
+                    (2, "Jane Smith", "jane.smith@example.com", "234-567-8901", "2021-02-15"),
+                    (3, "Alice Johnson", "alice.johnson@example.com", "345-678-9012", "2021-03-10"),
+                    (4, "Bob Brown", "bob.brown@example.com", "456-789-0123", "2021-04-05"),
+                    (5, "Emily Davis", "emily.davis@example.com", "567-890-1234", "2021-05-20"),
+                    (6, "Michael Green", "michael.green@example.com", "678-901-2345", "2021-06-15"),
+                    (7, "Sarah White", "sarah.white@example.com", "789-012-3456", "2021-07-10"),
+                    (8, "David Black", "david.black@example.com", "890-123-4567", "2021-08-05"),
+                    (9, "Emma Blue", "emma.blue@example.com", "901-234-5678", "2021-09-15"),
+                    (10, "James Gray", "james.gray@example.com", "012-345-6789", "2021-10-01"),
+                    (11, "Olivia Gold", "olivia.gold@example.com", "123-456-7890", "2021-11-20"),
+                    (12, "Sophia Red", "sophia.red@example.com", "234-567-8901", "2021-12-05"),
+                    (13, "Liam Silver", "liam.silver@example.com", "345-678-9012", "2022-01-01"),
+                    (14, "Isabella Yellow", "isabella.yellow@example.com", "456-789-0123", "2022-02-15"),
+                    (15, "Mason Purple", "mason.purple@example.com", "567-890-1234", "2022-03-10"),
+                    (16, "Ava Brown", "ava.brown@example.com", "678-901-2345", "2022-04-05"),
+                    (17, "Lucas Pink", "lucas.pink@example.com", "789-012-3456", "2022-05-20"),
+                    (18, "Mia Cyan", "mia.cyan@example.com", "890-123-4567", "2022-06-15"),
+                    (19, "Ethan Lime", "ethan.lime@example.com", "901-234-5678", "2022-07-10"),
+                    (20, "Charlotte Violet", "charlotte.violet@example.com", "012-345-6789", "2022-08-05")
+                };
+                foreach (var (id, name, email, phone, date) in members)
+                {
+                    await db.ExecuteAsync("INSERT INTO Members (member_id, name, email, phone, membership_date) VALUES (?, ?, ?, ?, ?)", id, name, email, phone, date);
+                }
+
                 // Seed Authors
                 var authors = new (int, string, string)[]
                 {
@@ -197,34 +227,36 @@ namespace LibraryApplication.Services
                                           id, title, author, category, isbn, year, copies);
                 }
 
-                // Seed Members
-                var members = new (int, string, string, string, string)[]
+                // Seed Dewey Decimal
+                var deweys = new (int, string)[]
                 {
-                    (1, "John Doe", "john.doe@example.com", "123-456-7890", "2021-01-01"),
-                    (2, "Jane Smith", "jane.smith@example.com", "234-567-8901", "2021-02-15"),
-                    (3, "Alice Johnson", "alice.johnson@example.com", "345-678-9012", "2021-03-10"),
-                    (4, "Bob Brown", "bob.brown@example.com", "456-789-0123", "2021-04-05"),
-                    (5, "Emily Davis", "emily.davis@example.com", "567-890-1234", "2021-05-20"),
-                    (6, "Michael Green", "michael.green@example.com", "678-901-2345", "2021-06-15"),
-                    (7, "Sarah White", "sarah.white@example.com", "789-012-3456", "2021-07-10"),
-                    (8, "David Black", "david.black@example.com", "890-123-4567", "2021-08-05"),
-                    (9, "Emma Blue", "emma.blue@example.com", "901-234-5678", "2021-09-15"),
-                    (10, "James Gray", "james.gray@example.com", "012-345-6789", "2021-10-01"),
-                    (11, "Olivia Gold", "olivia.gold@example.com", "123-456-7890", "2021-11-20"),
-                    (12, "Sophia Red", "sophia.red@example.com", "234-567-8901", "2021-12-05"),
-                    (13, "Liam Silver", "liam.silver@example.com", "345-678-9012", "2022-01-01"),
-                    (14, "Isabella Yellow", "isabella.yellow@example.com", "456-789-0123", "2022-02-15"),
-                    (15, "Mason Purple", "mason.purple@example.com", "567-890-1234", "2022-03-10"),
-                    (16, "Ava Brown", "ava.brown@example.com", "678-901-2345", "2022-04-05"),
-                    (17, "Lucas Pink", "lucas.pink@example.com", "789-012-3456", "2022-05-20"),
-                    (18, "Mia Cyan", "mia.cyan@example.com", "890-123-4567", "2022-06-15"),
-                    (19, "Ethan Lime", "ethan.lime@example.com", "901-234-5678", "2022-07-10"),
-                    (20, "Charlotte Violet", "charlotte.violet@example.com", "012-345-6789", "2022-08-05")
+                    (1, "823.92"),
+                    (2, "823.92"),
+                    (3, "823.91"),
+                    (4, "823.912"),
+                    (5, "823.914"),
+                    (6, "813.54"),
+                    (7, "823.914"),
+                    (8, "813.52"),
+                    (9, "813.52"),
+                    (10, "823.912"),
+                    (11, "823.91"),
+                    (12, "813.912"),
+                    (13, "813.53"),
+                    (14, "813.52"),
+                    (15, "813.52"),
+                    (16, "823.92"),
+                    (17, "813.91"),
+                    (18, "813.912"),
+                    (19, "823.912"),
+                    (20, "813.914")
+
                 };
-                foreach (var (id, name, email, phone, date) in members)
+                foreach (var (book, dewey) in deweys)
                 {
-                    await db.ExecuteAsync("INSERT INTO Members (member_id, name, email, phone, membership_date) VALUES (?, ?, ?, ?, ?)", id, name, email, phone, date);
+                    await db.ExecuteAsync("INSERT INTO Dewey_Decimal (book_id, dewey_num) VALUES (?, ?)", book, dewey);
                 }
+
 
                 // Seed Location
                 var locations = new (int, int, int, int, string, string)[]
@@ -286,34 +318,7 @@ namespace LibraryApplication.Services
                                           id, book, member, loanDate, dueDate, returnDate, location);
                 }
 
-                // Seed Dewey Decimal
-                var deweys = new (int, string)[]
-                {
-                    (1, "823.92"),
-                    (2, "823.92"),
-                    (3, "823.91"),
-                    (4, "823.912"),
-                    (5, "823.914"),
-                    (6, "813.54"),
-                    (7, "823.914"),
-                    (8, "813.52"),
-                    (9, "813.52"),
-                    (10, "823.912"),
-                    (11, "823.91"),
-                    (12, "813.912"),
-                    (13, "813.53"),
-                    (14, "813.52"),
-                    (15, "813.52"),
-                    (16, "823.92"),
-                    (17, "813.91"),
-                    (18, "813.912"),
-                    (19, "823.912"),
-                    (20, "813.914")
-                };
-                foreach (var (book, dewey) in deweys)
-                {
-                    await db.ExecuteAsync("INSERT INTO Dewey_Decimal (book_id, dewey_num) VALUES (?, ?)", book, dewey);
-                }
+                
 
                 Debug.WriteLine("Seeding completed successfully.");
             }

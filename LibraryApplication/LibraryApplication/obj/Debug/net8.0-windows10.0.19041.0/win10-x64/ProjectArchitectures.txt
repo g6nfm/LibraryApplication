@@ -1,1 +1,1 @@
-C:\Users\Jakob\Desktop\Library\LibraryApplication\LibraryApplication\LibraryApplication.csproj;x64
+C:\Users\Jakob\Desktop\LibraryApplication\LibraryApplication\LibraryApplication\LibraryApplication.csproj;x64
