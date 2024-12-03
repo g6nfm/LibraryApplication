@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jakob\\Desktop\\LibraryApplication\\LibraryApplication\\LibraryApplication\\LibraryApplication.csproj": {}
+    "C:\\Users\\Jakob\\Desktop\\Library\\LibraryApplication\\LibraryApplication\\LibraryApplication.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jakob\\Desktop\\LibraryApplication\\LibraryApplication\\LibraryApplication\\LibraryApplication.csproj": {
+    "C:\\Users\\Jakob\\Desktop\\Library\\LibraryApplication\\LibraryApplication\\LibraryApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jakob\\Desktop\\LibraryApplication\\LibraryApplication\\LibraryApplication\\LibraryApplication.csproj",
+        "projectUniqueName": "C:\\Users\\Jakob\\Desktop\\Library\\LibraryApplication\\LibraryApplication\\LibraryApplication.csproj",
         "projectName": "LibraryApplication",
-        "projectPath": "C:\\Users\\Jakob\\Desktop\\LibraryApplication\\LibraryApplication\\LibraryApplication\\LibraryApplication.csproj",
+        "projectPath": "C:\\Users\\Jakob\\Desktop\\Library\\LibraryApplication\\LibraryApplication\\LibraryApplication.csproj",
         "packagesPath": "C:\\Users\\Jakob\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jakob\\Desktop\\LibraryApplication\\LibraryApplication\\LibraryApplication\\obj\\",
+        "outputPath": "C:\\Users\\Jakob\\Desktop\\Library\\LibraryApplication\\LibraryApplication\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
@@ -38,11 +38,11 @@
             "targetAlias": "net8.0-android",
             "projectReferences": {}
           },
-          "net8.0-ios17.0": {
+          "net8.0-ios17.2": {
             "targetAlias": "net8.0-ios",
             "projectReferences": {}
           },
-          "net8.0-maccatalyst17.0": {
+          "net8.0-maccatalyst17.2": {
             "targetAlias": "net8.0-maccatalyst",
             "projectReferences": {}
           },
@@ -113,7 +113,7 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         },
-        "net8.0-ios17.0": {
+        "net8.0-ios17.2": {
           "targetAlias": "net8.0-ios",
           "dependencies": {
             "Microsoft.Extensions.Logging.Debug": {
@@ -168,7 +168,7 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         },
-        "net8.0-maccatalyst17.0": {
+        "net8.0-maccatalyst17.2": {
           "targetAlias": "net8.0-maccatalyst",
           "dependencies": {
             "Microsoft.Extensions.Logging.Debug": {

@@ -30,9 +30,11 @@ namespace LibraryApplication
                     var member = members.First();
                     int memberId = member.member_id;
 
+                    Console.WriteLine($"Member ID: {memberId}");
+
                     // Fetch loaned books
                     var books = await db.QueryAsync<CheckedOutBook>(
-                        "SELECT Books.title AS Title, Authors.name AS AuthorName, Categories.name AS CategoryName, " +
+                        "SELECT Loans.loan_id AS LoanId, Books.title AS Title, Authors.name AS AuthorName, Categories.name AS CategoryName, " +
                         "Loans.loan_date AS LoanDate, Loans.due_date AS DueDate " +
                         "FROM Loans " +
                         "INNER JOIN Books ON Loans.book_id = Books.book_id " +
@@ -44,6 +46,7 @@ namespace LibraryApplication
                     {
                         // Populate the CollectionView with loaned books
                         CheckedOutBooksCollectionView.ItemsSource = books;
+                        Console.WriteLine($"Books Found: {books.Count}");
                     }
                     else
                     {
