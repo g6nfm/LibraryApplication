@@ -1,0 +1,51 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LibraryApplication.MembersPage"
+             Title="Members">
+    <Grid>
+        <!-- Main Content -->
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <!-- Search Label -->
+            <Label Text="Search Members" FontSize="20" FontAttributes="Bold" />
+
+            <!-- Search Entry -->
+            <Entry x:Name="SearchEntry" Placeholder="Enter Name or Email" />
+
+            <!-- Search Button -->
+            <Button Text="Search"
+                    BackgroundColor="#3498db"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Clicked="OnSearchClicked" />
+
+            <!-- Results Count Label -->
+            <Label x:Name="ResultsCountLabel" Text="Results: 0" FontAttributes="Bold" TextColor="Gray" />
+
+            <!-- Scrollable Results -->
+            <ScrollView VerticalOptions="FillAndExpand">
+                <CollectionView x:Name="MembersCollectionView" SelectionMode="None"
+                                HeightRequest="500">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10">
+                                <!-- Member Name -->
+                                <Label Text="Name: " FontAttributes="Bold" />
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
+
+                                <!-- Member Email -->
+                                <Label Text="Email: " FontAttributes="Bold" />
+                                <Label Text="{Binding Email}" FontSize="14" TextColor="Gray" />
+
+                                <!-- Member Phone -->
+                                <Label Text="Phone: " FontAttributes="Bold" />
+                                <Label Text="{Binding Phone}" FontSize="14" TextColor="Gray" />
+
+                                
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

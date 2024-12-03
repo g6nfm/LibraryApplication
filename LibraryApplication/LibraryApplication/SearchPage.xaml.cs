@@ -186,7 +186,7 @@ public partial class SearchPage : ContentPage
                 int memberId = 1;
 
                 // Insert into the Cart table
-                var db = DatabaseHelper.GetConnection();
+                var db = Services.DatabaseHelper.GetConnection();
                 await db.ExecuteAsync("INSERT INTO Cart (member_id, book_id) VALUES (?, ?)", memberId, selectedBook.BookId);
 
                 // Show confirmation

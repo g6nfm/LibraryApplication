@@ -9,6 +9,7 @@
         <!-- Header -->
         <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
             <Label Text="Welcome to the MKJF Library Database!"
+                   TextColor="Black"
                    FontSize="24"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="Center" />
@@ -39,6 +40,17 @@
                     Pressed="OnButtonPressed"
                     Released="OnButtonReleased"
                     Clicked="OnCheckedOutBooksClicked" />
+
+            <Button Text="View Members"
+                BackgroundColor="Purple"
+                TextColor="White"
+                CornerRadius="15"
+                HeightRequest="50"
+                Pressed="OnButtonPressed"
+                Released="OnButtonReleased"
+                FontSize="16"
+                Clicked="OnViewMembersClicked" /> 
+            
         </VerticalStackLayout>
     </Grid>
 </ContentPage>

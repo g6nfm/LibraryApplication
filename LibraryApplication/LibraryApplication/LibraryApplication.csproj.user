@@ -9,6 +9,12 @@
     <MauiXaml Update="CheckedOutBooksPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="MembersPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="PasswordPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="SearchPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
